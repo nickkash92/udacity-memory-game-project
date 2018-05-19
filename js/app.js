@@ -1,7 +1,8 @@
 /*
- * Create a list that holds all of your cards
+ * Array that holds the list of different cards in the deck
  */
 
+var cardDeck = ["fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp", "fa fa-twitter", "fa fa-instagram", "fa fa-linkedin","fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp", "fa fa-twitter", "fa fa-instagram", "fa fa-linkedin"];
 
 /*
  * Display the cards on the page
