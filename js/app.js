@@ -5,7 +5,12 @@
 var cardDeck = ["fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp", "fa fa-twitter",
 "fa fa-instagram", "fa fa-linkedin","fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp",
 "fa fa-twitter", "fa fa-instagram", "fa fa-linkedin"];
-
+    opened ={},
+    match = 0,
+    moves = 0,
+    rank3stars = 10,
+    rank2stars = 16,
+    rank1stars = 20,
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -28,6 +33,15 @@ function shuffle(array) {
     return array;
 }
 
+// start a new game
+// shuffle the list of cards using function provided
+function initGame(){
+  cards = shuffle(cardDeck);
+//loop through each card and create its html
+  for (var i = 0; i < cardDeck.length; i++){
+
+  }
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -39,3 +53,20 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+//Final rating and final score
+
+  function setRating(moves) {
+	var rating = 3;
+	if (moves > rank3stars && moves < rank2stars) {
+		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
+		rating = 2;
+	} else if (moves > rank2stars && moves < rank1stars) {
+		$ratingStars.eq(1).removeClass('fa-star').addClass('fa-star-o');
+		rating = 1;
+	} else if (moves > rank1stars) {
+		$ratingStars.eq(0).removeClass('fa-star').addClass('fa-star-o');
+		rating = 0;
+	}
+	return { score: rating };
+};
