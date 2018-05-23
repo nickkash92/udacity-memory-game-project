@@ -5,12 +5,31 @@
 var cardDeck = ["fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp", "fa fa-twitter",
 "fa fa-instagram", "fa fa-linkedin","fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp",
 "fa fa-twitter", "fa fa-instagram", "fa fa-linkedin"];
-    opened ={},
-    match = 0,
-    moves = 0,
+
+// Game state variables
+var open = [];
+var matched = 0;
+var moveCounter = 0;
+var numStars = 3;
+var timer = {
+    seconds: 0,
+    minutes: 0,
+    clearTime: -1
     rank3stars = 10,
     rank2stars = 16,
     rank1stars = 20,
+};
+
+// Function to start timer
+var startTimer = function() {
+    if (timer.seconds === 59) {
+        timer.minutes++;
+        timer.seconds = 0;
+    } else {
+        timer.seconds++;
+    }
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -39,9 +58,25 @@ function initGame(){
   cards = shuffle(cardDeck);
 //loop through each card and create its html
   for (var i = 0; i < cardDeck.length; i++){
-
+  jQuery('ul.deck').append('<li class="card"><i class='+ cardDeck[i] +'></i></li>');
   }
 }
+
+// Event listener for when the refresh button is hit
+document.getElementById("fa fa-repeat").addEventListener("click", initGame);
+function initGame(){
+  cards = shuffle(cardDeck);
+  for (var i = 0; i < cardDeck.length; i++){
+  jQuery('ul.deck').append('<li class="card"><i class='+ cardDeck[i] +'></i></li>');
+  }
+}
+
+
+// Event listener for when each card is initially clicked
+
+document.getElementById("card").addEventListener("click", cards);
+function
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
