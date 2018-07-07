@@ -1,38 +1,38 @@
 //Array that holds the list of different cards in the deck
- var cardDeck = ["fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp", "fa fa-twitter",
-"fa fa-instagram", "fa fa-linkedin","fa fa-pinterest", "fa fa-facebook", "fa fa-youtube", "fa fa-snapchat", "fa fa-whatsapp",
-"fa fa-twitter", "fa fa-instagram", "fa fa-linkedin"];
+ var cardDeck = ["fa fa-pinterest", "fa fa-facebook", "fa fa-youtube",
+"fa fa-snapchat", "fa fa-whatsapp", "fa fa-twitter",
+"fa fa-instagram", "fa fa-linkedin","fa fa-pinterest",
+"fa fa-facebook", "fa fa-youtube", "fa fa-snapchat",
+"fa fa-whatsapp","fa fa-twitter", "fa fa-instagram", "fa fa-linkedin"];
 
 // Game variables
-var open = [];
-var matched = 0;
-var moveCounter = 0;
-var numStars = 3;
-var rank3stars = 10,
-var rank2stars = 16,
-var rank1stars = 20,
-var timer = {
-    seconds: 0,
-    minutes: 0,
-    clearTime: -1
+const cards= document.querySelectorAll ('.cards');
+const deck= document.querySelector ('deck');
+let cardClicked= [];
+let moves = 0;
+let clockOff = true;
+let time = 0;
 };
 
-// Function to start timer
-var startTimer = function() {
-    if (timer.seconds === 59) {
-        timer.minutes++;
-        timer.seconds = 0;
-    } else {
-        timer.seconds++;
+// Functions for controlling the timer - grabbed from third party source
+function (startClock) {
+  time = 0;
+  let clockID = setInterval(() {
+    time++;
+  }, 1000);
+}
+startClock();
+
+deck.addEventListener("click",validClick);
+  function (validClick){
+    if (validClick(clickTarget)) {
+      if (clickOff) {
+        startClock();
+        clockOff = false;
+      }
     }
+  }
 
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -56,7 +56,7 @@ function initGame(){
 //loop through each card and create its html
 //add each card's HTML to the page
   for (var i = 0; i < cardDeck.length; i++){
-  jQuery('ul.deck').append('<li class="card"><i class='+ cardDeck[i] +'></i></li>');
+  deck.appendChild('<li class="card"><i class='+ cardDeck[i] +'></i></li>');
   }
 }
 
@@ -65,19 +65,83 @@ document.getElementByClassName("fa fa-repeat").addEventListener("click", initGam
 function initGame(){
   cards = shuffle(cardDeck);
   for (var i = 0; i < cardDeck.length; i++){
-  jQuery('ul.deck').append('<li class="card"><i class='+ cardDeck[i] +'></i></li>');
+  deck.appendChild('<li class="card"><i class='+ cardDeck[i] +'></i></li>');
   }
 }
 
 
 // Event listener for when each card is initially clicked
-function myFunction() {
-  document.getElementByClasName("card").addEventListener("click", cards);
-  element.classList.toggle("card open show")
+// Add to array of flipped cards
+deck.addEventListener("click", cardClicked);
+function cardClicked(){
+  const clickTarget = cardClicked.target;
+  if (clickTarget.classList.contains('card') && cardClicked.length < 2){
+    clickTarget.classList.toggle('card open show');
+  } if (cardClicked.length === 2) {
+    function comparedCard();
+  {  function addmove();
+  }}
+};
+
+function addCardClicked(clickTarget){
+  cardClicked.push(clickTarget);
 }
 
 
+// Creates function that switches to class to match if two clicked cards match
+// Switch back to unflipped if not a match
+function comparedCard() {
+  if (
+    cardClicked[0].firstElementChild.className === cardClicked[1].firstElementChild.className
+  ) {
+    cardClicked[0].classList.toggle("deck card match");
+    cardClicked[1].classList.toggle("deck card match");
+    cardClicked =[];
+  } else {
+    cardClicked =[];
+    cardClicked[0].classList.toggle("deck");
+    cardClicked[1].classList.toggle("deck");
+  } else {
+    setTimeout(() {
+      toggleCard(cardClicked {0});
+      toggleCard(cardClicked {1};
+      cardClicked = [];
+    }, 1000)
+  }
 
+//Function to count moves each time
+function addMove() {
+  moves++;
+  const movesText = document.querySelector(".moves");
+  movesText.innerHTML = moves;
+}
+
+//Module pop-up at the end
+function toggleModal() {
+  const modal = document.querySelector('.modal-background');
+  modal.classList.toggle('hide');
+}
+
+toggleModal() //Open
+toggleModal() //Close
+
+function writeModalsStats() {
+  const timeStat = document.querySelector('modal-time');
+  const clockTime = document.querySelector('.clock');
+  const moveStat = document.querySelector('modal-moves');
+  const starsStat = document.querySelector('modal-stars');
+
+
+}
+
+//Final rating and final score
+
+//function setRating(moves) {
+  //if (moves === 16 || moves === 24
+  //){ removeStar()
+
+//  }
+//}
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -89,20 +153,3 @@ function myFunction() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-//Final rating and final score
-
-  function setRating(moves) {
-	var rating = 3;
-	if (moves > rank3stars && moves < rank2stars) {
-		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
-		rating = 2;
-	} else if (moves > rank2stars && moves < rank1stars) {
-		$ratingStars.eq(1).removeClass('fa-star').addClass('fa-star-o');
-		rating = 1;
-	} else if (moves > rank1stars) {
-		$ratingStars.eq(0).removeClass('fa-star').addClass('fa-star-o');
-		rating = 0;
-	}
-	return { score: rating };
-};

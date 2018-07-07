@@ -6,9 +6,27 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="css/app.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>    <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+
+<div class="modal-background hide">
+  <div class="modal-body">
+    <div class="modal-heading">
+        <h1 class="modal-title">Stats</h1>
+        <span class="modal-close">x</span>
+    </div>
+        <div class="modal-stats">
+          <span class="modal-time">Time =</span>
+          <span class="modal-stars">Stars =</span>
+          <span class="modal-moves">Moves =</span>
+        </div>
+      <div class="modal-buttons">
+        <button class="modal-button modal-cancel">Cancel</button>
+        <button class="modal-button modal-replay">Replay</button>
+      </div>
+  </div>
+</div>
 
     <div class="container">
         <header>
@@ -16,6 +34,7 @@
         </header>
 
         <section class="score-panel">
+        <span class="Clock">0:00</span>
         	<ul class="stars">
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
